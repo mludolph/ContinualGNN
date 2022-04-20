@@ -1,14 +1,8 @@
-import os
-import sys
-import random 
-
 import torch
 import torch.nn as nn
 
 
-
 class SAGEConv(torch.nn.Module):
-
     def __init__(self, in_size, out_size):
         super(SAGEConv, self).__init__()
 
@@ -23,5 +17,5 @@ class SAGEConv(torch.nn.Module):
             nn.init.xavier_uniform_(param)
 
     def forward(self, x, aggregate_x):
-        combine_x = torch.cat([x, aggregate_x], dim = 1)
+        combine_x = torch.cat([x, aggregate_x], dim=1)
         return nn.functional.relu(torch.matmul(combine_x, self.weight))
